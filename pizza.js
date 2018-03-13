@@ -1,7 +1,8 @@
 class Pizza {
-    constructor(...ingredients){
+    constructor(size, ...ingredients){
         this.ingredients = ingredients.concat('cheese');
         this.basePrice = 10;
+        this.size = size;
     }
 
     calculatePrice () {
@@ -14,8 +15,8 @@ class Pizza {
 }
 
 class Athena extends Pizza {
-    constructor(...ingredients){
-        super(...ingredients);
+    constructor(size, ...ingredients){
+        super(size, ...ingredients);
         this.specialIngredients = ['feta', 'other stuff'];
         this.basePrice = 14;
     }
@@ -43,10 +44,42 @@ class Order {
 
 
 
-let pizzaOne = new Pizza('one', 'two', 'three');
-let pizzaTwo = new Pizza('a', 'b', 'c', 'd');
-let pizzaThree = new Pizza();
-let pizzaFour = new Athena('another thing', 'and another');
+
+
+
+const DOM = document.body;
+
+function random() {
+    return Math.floor(Math.random() * 255);
+}
+
+function appendYes () {
+    DOM.style.color = 'white';
+    DOM.style.fontFamily = 'sans-serif';
+    let yay = document.createElement('h3');
+    yay.textContent = 'YES!';
+    yay.setAttribute('id', 'yay');
+    DOM.appendChild(yay);
+}
+ 
+appendYes();
+
+function changeBackgroundColor() {
+    document.querySelector('#yay').textContent += ' YES!';
+    let randomColor = `rgb(${random()}, ${random()}, ${random()})`;
+    DOM.style.backgroundColor = randomColor;
+}
+
+setInterval(changeBackgroundColor, 1000);
+
+
+
+
+
+let pizzaOne = new Pizza('sm', 'one', 'two', 'three');
+let pizzaTwo = new Pizza('md', 'a', 'b', 'c', 'd');
+let pizzaThree = new Pizza('lg');
+let pizzaFour = new Athena('md', 'another thing', 'and another');
 console.log('Pizza One:', pizzaOne);
 console.log('Calculate price for Pizza One:', pizzaOne.calculatePrice());
 console.log('Pizza Two:', pizzaTwo);
